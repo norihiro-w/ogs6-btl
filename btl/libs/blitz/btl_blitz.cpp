@@ -25,7 +25,7 @@
 #include "action_matrix_matrix_product.hh"
 #include "action_axpy.hh"
 #include "action_lu_solve.hh"
-#include "action_ata_product.hh"
+//#include "action_ata_product.hh"
 #include "action_aat_product.hh"
 #include "action_atv_product.hh"
 
@@ -38,7 +38,7 @@ int main()
   bench<Action_atv_product<blitz_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
 
   bench<Action_matrix_matrix_product<blitz_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
-  bench<Action_ata_product<blitz_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
+  //bench<Action_ata_product<blitz_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
   bench<Action_aat_product<blitz_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
 
   bench<Action_axpy<blitz_interface<REAL_TYPE> > >(MIN_AXPY,MAX_AXPY,NB_POINT);

@@ -90,13 +90,13 @@ public :
     X = sum(A(i,k) * B(k,j), k);
   }
 
-  static inline void ata_product(const gene_matrix & A, gene_matrix & X, int N)
-  {
-    firstIndex i;
-    secondIndex j;
-    thirdIndex k;
-    X = sum(A(k,i) * A(k,j), k);
-  }
+//  static inline void ata_product(const gene_matrix & A, gene_matrix & X, int N)
+//  {
+//    firstIndex i;
+//    secondIndex j;
+//    thirdIndex k;
+//    X = sum(A(k,i) * A(k,j), k);
+//  }
 
   static inline void aat_product(const gene_matrix & A, gene_matrix & X, int N)
   {
