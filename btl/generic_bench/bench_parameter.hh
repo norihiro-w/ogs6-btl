@@ -21,7 +21,7 @@
 #define BENCH_PARAMETER_HH
 
 // minimal time for each measurement
-#define REAL_TYPE float
+#define REAL_TYPE double
 // minimal time for each measurement
 #define MIN_TIME 0.2
 // nb of point on bench curves
