@@ -11,3 +11,9 @@
 *.lai
 *.la
 *.a
+
+# Vim swap files
+*.sw[op]
+
+
+build/
