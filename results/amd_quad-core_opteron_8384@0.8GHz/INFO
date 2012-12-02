@@ -1,0 +1,6 @@
+32 core amd, cache size 512KB
+
+gcc-4.6.1
+atlas compiled (but lapack is from system)
+boost is system, version 1.41
+intel mkl 11.0/074
