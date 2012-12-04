@@ -18,6 +18,16 @@ if (MKL_FOUND)
 endif (MKL_FOUND)
 
 
+find_package(OPENBLAS)
+if (OPENBLAS_FOUND)
+  btl_add_bench(btl_openblas main.cpp)
+  if(BUILD_btl_openblas)
+	target_link_libraries(btl_openblas ${OPENBLAS_LIBRARIES} )
+    set_target_properties(btl_openblas PROPERTIES COMPILE_FLAGS "-DCBLASNAME=OPENBLAS")
+  endif(BUILD_btl_openblas)
+endif (OPENBLAS_FOUND)
+
+
 find_package(GOTO2)
 if (GOTO2_FOUND)
   btl_add_bench(btl_goto2 main.cpp)
