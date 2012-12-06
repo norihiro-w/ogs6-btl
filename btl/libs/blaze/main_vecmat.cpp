@@ -26,9 +26,6 @@ int main()
 {
   bench<Action_matrix_vector_product<blaze1_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
   bench<Action_atv_product<blaze1_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
-  bench<Action_symv<blaze1_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
-  bench<Action_syr2<blaze1_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
-  bench<Action_ger<blaze1_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
 
   return 0;
 }

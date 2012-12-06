@@ -27,7 +27,6 @@ int main()
 
   bench<Action_axpy<blaze1_interface<REAL_TYPE> > >(MIN_AXPY,MAX_AXPY,NB_POINT);
   bench<Action_axpby<blaze1_interface<REAL_TYPE> > >(MIN_AXPY,MAX_AXPY,NB_POINT);
-  bench<Action_rot<blaze1_interface<REAL_TYPE> > >(MIN_AXPY,MAX_AXPY,NB_POINT);
   
   return 0;
 }
