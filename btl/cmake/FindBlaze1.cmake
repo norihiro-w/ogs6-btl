@@ -1,0 +1,17 @@
+if (BLAZE1_INCLUDE_DIR)
+  # in cache already
+  set(BLAZE1_FOUND TRUE)
+else (BLAZE1_INCLUDE_DIR)
+
+find_path(BLAZE1_INCLUDE_DIR NAMES blaze/Blaze.h
+     PATHS
+     ${INCLUDE_INSTALL_DIR}
+     ${BLAZE1_INCLUDE_DIR}
+   )
+
+include(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(BLAZE DEFAULT_MSG BLAZE1_INCLUDE_DIR)
+
+mark_as_advanced(BLAZE1_INCLUDE_DIR)
+
+endif(BLAZE1_INCLUDE_DIR)
