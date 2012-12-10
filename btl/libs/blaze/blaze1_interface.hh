@@ -24,25 +24,23 @@
 
 using namespace blaze;
 
-template<class real, int SIZE=Dynamic>
+template<class real>
 class blaze1_interface
 {
 
 public :
-
-  enum {IsFixedSize = (SIZE!=Dynamic)};
 
   typedef real real_type;
 
   typedef std::vector<real> stl_vector;
   typedef std::vector<stl_vector> stl_matrix;
 
-  typedef blaze::DynamicMatrix<real,SIZE,SIZE> gene_matrix;
-  typedef blaze::DynamicVector<real,SIZE>      gene_vector;
+  typedef blaze::DynamicMatrix<real> gene_matrix;
+  typedef blaze::DynamicVector<real> gene_vector;
 
   static inline std::string name( void )
   {
-    return EIGEN_MAKESTRING(BTL_PREFIX);
+    return "blaze1";
   }
 
   static void free_matrix(gene_matrix & A, int N) {}
@@ -155,7 +153,7 @@ public :
   */
   
   /*
-  static EIGEN_DONT_INLINE void syr2(gene_matrix & A,  gene_vector & X, gene_vector & Y, int N){
+  static inline void syr2(gene_matrix & A,  gene_vector & X, gene_vector & Y, int N){
     // internal::product_selfadjoint_rank2_update<real,0,LowerTriangularBit>(N,A.data(),N, X.data(), 1, Y.data(), 1, -1);
     for(int j=0; j<N; ++j)
       A.col(j).tail(N-j) += X[j] * Y.tail(N-j) + Y[j] * X.tail(N-j);
@@ -163,14 +161,14 @@ public :
   */
 
   /*
-  static EIGEN_DONT_INLINE void ger(gene_matrix & A,  gene_vector & X, gene_vector & Y, int N){
+  static inline void ger(gene_matrix & A,  gene_vector & X, gene_vector & Y, int N){
     for(int j=0; j<N; ++j)
       A.col(j) += X * Y[j];
   }
   */
 
   /*
-  static EIGEN_DONT_INLINE void rot(gene_vector & A,  gene_vector & B, real c, real s, int N){
+  static inline void rot(gene_vector & A,  gene_vector & B, real c, real s, int N){
     internal::apply_rotation_in_the_plane(A, B, JacobiRotation<real>(c,s));
   }
   */
@@ -187,11 +185,11 @@ public :
     Y = X.scale(a) + Y.scale(b);
   }
 
-  static EIGEN_DONT_INLINE void copy_matrix(const gene_matrix & source, gene_matrix & cible, int N){
+  static inline void copy_matrix(const gene_matrix & source, gene_matrix & cible, int N){
     cible = source;
   }
 
-  static EIGEN_DONT_INLINE void copy_vector(const gene_vector & source, gene_vector & cible, int N){
+  static inline void copy_vector(const gene_vector & source, gene_vector & cible, int N){
     cible = source;
   }
 
