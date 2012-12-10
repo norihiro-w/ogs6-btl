@@ -22,8 +22,6 @@
 #include <vector>
 #include "btl.hh"
 
-using namespace blaze;
-
 template<class real>
 class blaze1_interface
 {
