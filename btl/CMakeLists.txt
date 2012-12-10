@@ -89,6 +89,7 @@ endmacro(btl_add_target_property)
 
 ENABLE_TESTING()
 
+add_subdirectory(libs/blaze)
 add_subdirectory(libs/eigen3)
 add_subdirectory(libs/eigen2)
 add_subdirectory(libs/BLAS)
