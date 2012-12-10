@@ -175,11 +175,11 @@ public :
     X = trans(A) * B;
   }
 
-  static inline void axpy(real coef, const gene_vector & X, gene_vector & Y, int N){
+  static inline void axpy(real coef, gene_vector & X, gene_vector & Y, int N){
     Y += X.scale(coef);
   }
 
-  static inline void axpby(real a, const gene_vector & X, real b, gene_vector & Y, int N){
+  static inline void axpby(real a, gene_vector & X, real b, gene_vector & Y, int N){
     Y = X.scale(a) + Y.scale(b);
   }
 
