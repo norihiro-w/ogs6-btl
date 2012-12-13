@@ -89,3 +89,36 @@ plotSmallSizeBenchmarks = function (bs, logx = FALSE, logy = FALSE)
         (if (logx) { scale_x_log10() }) +
         (if (logy) { scale_y_log10() })
 }
+
+plotToPDF = function (bs)
+{
+    pdf("all_intel.pdf", paper="a4r", width=11.7, height=8.3)
+    print(
+          ggplot(bs[bs$arch == "intel_core_i5-2430M@2.4GHz" & bs$size <= 3000,],
+                 benchmarkAes) +
+          facet_wrap(~benchmark, 3) +
+          geom_line() +
+          scale_x_log10() +
+          scale_y_log10()
+         )
+    dev.off()
+
+    pdf("all_amd.pdf", paper="a4r", width=11.7, height=8.3)
+    print(
+          ggplot(bs[bs$arch == "amd_quad-core_opteron_8384@0.8GHz" & bs$size <= 3000,],
+                 benchmarkAes) +
+          facet_wrap(~benchmark, 3) +
+          geom_line() +
+          scale_x_log10() +
+          scale_y_log10()
+         )
+    dev.off()
+
+    pdf("selected.pdf", paper="a4r", width=11.7, height=8.3)
+    print(plotBenchmarks(bs[bs$size <= 3000,]))
+    dev.off()
+
+    pdf("small_size.pdf", paper="a4r", width=11.7, height=8.3)
+    print(plotSmallSizeBenchmarks(bs[bs$size <= 3000,]))
+    dev.off()
+}
