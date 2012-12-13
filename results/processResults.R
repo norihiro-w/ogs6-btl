@@ -37,31 +37,55 @@ selectMaxMflops = function (df)
          )
 }
 
-# Plot all benchmarks using log-x and log-y scales.
-plotAllBenchmarks = function (bs)
+#
+# Specialized plotting routines using ggplot2
+#
+
+benchmarkAes = aes(x=size, y=mflops, color=libname)
+benchmarkGrid = facet_grid(arch ~ benchmark, scales = "free_y")
+
+allBenchmarksGraph = function (bs)
 {
-    p = ggplot(bs, aes(x=size, y=mflops, color=libname)) + facet_grid(arch ~ benchmark)
-    p + geom_line(aes(linetype=libname)) + scale_x_log10() + scale_y_log10()
+    ggplot(bs, benchmarkAes) + benchmarkGrid
 }
 
-# Plot a subset of benchmarks using log-x and log-y scales.
-plotBenchmarks = function (bs)
+selectedBenchmarksGraph = function (bs)
 {
-    # Select a subset of benchmarks and libraries.
-    b = bs[bs$benchmark %in% c("aat","atv","matrix_matrix","matrix_vector") &
-           !bs$libname %in% c("eigen2","blitz"),]
-    p = ggplot(b, aes(x=size, y=mflops, color=libname)) + facet_grid(arch ~ benchmark)
-    p + geom_line() + scale_x_log10() + scale_y_log10()
+    ggplot(
+           bs[
+              bs$benchmark %in% c("aat","atv","matrix_matrix","matrix_vector")
+              & !bs$libname %in% c("eigen2","blitz"),
+              ],
+           benchmarkAes
+          ) + benchmarkGrid
 }
 
-# Plot a subset of benchmarks using linear x and y scales constraining size to
-# less or equeal to 100.
-plotSmallSizeBenchmarks = function (bs)
+# Plot all benchmarks using log-x and log-y scales by default.
+plotAllBenchmarks = function (bs, logx = TRUE, logy = TRUE)
+{
+    allBenchmarksGraph(bs) +
+        geom_line(aes(linetype=libname)) +
+        (if (logx) { scale_x_log10() }) +
+        (if (logy) { scale_y_log10() })
+}
+
+# Plot a subset of benchmarks using log-x and log-y scales by default.
+plotBenchmarks = function (bs, logx = TRUE, logy = TRUE)
 {
     # Select a subset of benchmarks and libraries.
-    b = bs[bs$benchmark %in% c("aat","atv","matrix_matrix","matrix_vector") &
-           !bs$libname %in% c("eigen2","blitz") &
-           bs$size <= 100,]
-    p = ggplot(b, aes(x=size, y=mflops, color=libname)) + facet_grid(arch ~ benchmark)
-    p + geom_line()
+    selectedBenchmarksGraph(bs) +
+        geom_line() +
+        (if (logx) { scale_x_log10() }) +
+        (if (logy) { scale_y_log10() })
+}
+
+# Plot a subset of benchmarks constraining size to less or equeal to 100.
+# Default x and y scales are linear.
+plotSmallSizeBenchmarks = function (bs, logx = FALSE, logy = FALSE)
+{
+    # Select a subset of benchmarks and libraries.
+    selectedBenchmarksGraph(bs[bs$size <= 100,]) +
+        geom_line() +
+        (if (logx) { scale_x_log10() }) +
+        (if (logy) { scale_y_log10() })
 }
