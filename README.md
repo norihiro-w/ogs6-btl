@@ -50,3 +50,19 @@ above `bench_.*.dat` files there
 cp build/libs/*/bench_*.dat results/<your_cpuinfo>/
 ```
 
+## Visualization
+There is an R-script in `results/` directory, which reads all benchmarks into a
+data frame. It provides simple plotting functions using the
+[ggplot2](ggplot2.org) package for visualisation.
+
+A typical R-session could be:
+```R
+source('processResults.R')  # Assuming you are in the results/ directory.
+bs = createTable(".")       # Use different path pointing to the results.
+b = selectMaxMflops(bb)     # Remove duplicate entries.
+
+# Use one of plotXXX functions for plotting, e.g.:
+plotAllBenchmarks(b)
+plotBenchmarks(b, logy = TRUE)
+plotSmallSizeBenchmarks(b)
+```
