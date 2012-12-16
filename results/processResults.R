@@ -81,10 +81,10 @@ plotBenchmarks = function (bs, logx = TRUE, logy = TRUE)
 
 # Plot a subset of benchmarks constraining size to less or equeal to 100.
 # Default x and y scales are linear.
-plotSmallSizeBenchmarks = function (bs, logx = FALSE, logy = FALSE)
+plotSmallSizeBenchmarks = function (bs, x_max=100, logx = FALSE, logy = FALSE)
 {
     # Select a subset of benchmarks and libraries.
-    selectedBenchmarksGraph(bs[bs$size <= 100,]) +
+    selectedBenchmarksGraph(bs[bs$size <= x_max,]) +
         geom_line() +
         (if (logx) { scale_x_log10() }) +
         (if (logy) { scale_y_log10() })
