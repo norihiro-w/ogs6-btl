@@ -33,7 +33,7 @@ int main()
   bench<Action_symv<STL_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
   bench<Action_syr2<STL_interface<REAL_TYPE> > >(MIN_MV,MAX_MV,NB_POINT);
   bench<Action_matrix_matrix_product<STL_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
-  bench<Action_ata_product<STL_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
+  //bench<Action_ata_product<STL_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
   bench<Action_aat_product<STL_interface<REAL_TYPE> > >(MIN_MM,MAX_MM,NB_POINT);
 
   return 0;
