@@ -19,7 +19,7 @@ if (EIGEN3_FOUND)
   btl_add_target_property(btl_eigen3_linear COMPILE_FLAGS "-fno-exceptions -DBTL_PREFIX=eigen3")
   btl_add_target_property(btl_eigen3_vecmat COMPILE_FLAGS "-fno-exceptions -DBTL_PREFIX=eigen3")
   btl_add_target_property(btl_eigen3_matmat COMPILE_FLAGS "-fno-exceptions -DBTL_PREFIX=eigen3")
-  btl_add_target_property(btl_eigen3_adv    COMPILE_FLAGS "-fno-exceptions -DBTL_PREFIX=eigen3")
+  #btl_add_target_property(btl_eigen3_adv    COMPILE_FLAGS "-fno-exceptions -DBTL_PREFIX=eigen3")
 
   option(BTL_BENCH_NOGCCVEC "also bench Eigen explicit vec without GCC's auto vec" OFF)
   if(CMAKE_COMPILER_IS_GNUCXX AND BTL_BENCH_NOGCCVEC)
