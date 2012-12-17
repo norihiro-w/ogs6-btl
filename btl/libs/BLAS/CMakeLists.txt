@@ -3,7 +3,11 @@ find_package(ATLAS)
 if (ATLAS_FOUND)
   btl_add_bench(btl_atlas main.cpp)
   if(BUILD_btl_atlas)
-    target_link_libraries(btl_atlas ${ATLAS_LIBRARIES})
+    find_library(GFORT_LIB gfortran 
+      HINTS 
+      /usr/lib
+    )
+    target_link_libraries(btl_atlas ${ATLAS_LIBRARIES} ${GFORT_LIB})
     set_target_properties(btl_atlas PROPERTIES COMPILE_FLAGS "-DCBLASNAME=ATLAS -DHAS_LAPACK=1")
   endif(BUILD_btl_atlas)
 endif (ATLAS_FOUND)
