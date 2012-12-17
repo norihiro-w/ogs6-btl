@@ -8,8 +8,15 @@ else()
   find_package(Blaze1)
 endif()
 
+
 if (BLAZE1_FOUND)
 
+  option(BUILD_btl_blaze_mkl "Use MKL for Blaze" ON)
+  IF(BUILD_btl_blaze_mkl)
+    find_package(MKL)
+    SET(BLAZE1_BLAS_LIBRARIES ${MKL_LIBRARIES})
+  ENDIF()
+  
   include_directories(${BLAZE1_INCLUDE_DIR})
   btl_add_bench(btl_blaze1_linear main_linear.cpp)
   btl_add_bench(btl_blaze1_vecmat main_vecmat.cpp)
@@ -18,6 +25,12 @@ if (BLAZE1_FOUND)
   btl_add_target_property(btl_blaze1_linear COMPILE_FLAGS "-DBTL_PREFIX=blaze1")
   btl_add_target_property(btl_blaze1_vecmat COMPILE_FLAGS "-DBTL_PREFIX=blaze1")
   btl_add_target_property(btl_blaze1_matmat COMPILE_FLAGS "-DBTL_PREFIX=blaze1")
+  
+  target_link_libraries(btl_blaze1_linear  ${BLAZE1_BLAS_LIBRARIES})
+  target_link_libraries(btl_blaze1_vecmat  ${BLAZE1_BLAS_LIBRARIES})
+  target_link_libraries(btl_blaze1_matmat  ${BLAZE1_BLAS_LIBRARIES})
+
+
 
   option(BTL_BENCH_NOGCCVEC "also bench Blaze explicit vec without GCC's auto vec" OFF)
   if(CMAKE_COMPILER_IS_GNUCXX AND BTL_BENCH_NOGCCVEC)
