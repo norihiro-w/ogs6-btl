@@ -85,11 +85,13 @@ public :
   }
 
   static inline void transposed_matrix_matrix_product(const gene_matrix & A, const gene_matrix & B, gene_matrix & X, int N){
-    X = trans(A) * B.transpose();
+    X = blaze::trans(A) * B.transpose();
   }
 
   static inline void aat_product(const gene_matrix & A, gene_matrix & X, int N){
-      X = A * trans(A); 
+      //X = A * trans(A);
+      const gene_matrix Y = trans(A);
+      X = A * Y;
   }
 
   static inline void matrix_vector_product(const gene_matrix & A, const gene_vector & B, gene_vector & X, int N){
@@ -172,7 +174,9 @@ public :
   */
 
   static inline void atv_product(gene_matrix & A, gene_vector & B, gene_vector & X, int N){
-    X = trans(A) * B;
+    //X = trans(A) * B;
+    const gene_matrix Y = trans(A);
+    X = Y * B;
   }
 
   static inline void axpy(real coef, gene_vector & X, gene_vector & Y, int N){
